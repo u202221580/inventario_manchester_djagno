@@ -1,0 +1,37 @@
+entorno virtual
+    cmd = py -m venv venv
+
+para activar se tiene que ver así en el cmd: (venv)
+    cmd = .\venv\Scripts\activate   
+
+luego instala django
+    cmd = pip install django
+
+crear proyecto con django   
+    cmd = django-admin startproject manchester_system .
+
+iniciar el proyecto
+    cmd = python manage.py runserver
+
+crear app django
+    cmd = python manage.py startapp inventory
+
+agregar la app creada en el proyecto django / settings / en la siguiente linea
+# Application definition
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'inventory' <---------en nombre de la app
+]
+
+
+python manage.py makemigrations  
+
+python manage.py migrate
+
+python manage.py createsuperuser
