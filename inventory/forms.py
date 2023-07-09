@@ -33,8 +33,8 @@ class RollosForm(forms.ModelForm):
         model = Rollos
         fields = ['almacen', 'diseno', 'color','metros']
         widgets = {
-            'almacen': forms.CheckboxSelectMultiple(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione almacen'}),
-            'diseno': forms.CheckboxSelectMultiple(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione diseño'}),
-            'color': forms.CheckboxSelectMultiple(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione color'}),
+            'almacen': forms.Select(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione almacen'}),
+            'diseno': forms.Select(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione diseño'}),
+            'color': forms.Select(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione color'}),
             'metros': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese metraje'})
         }

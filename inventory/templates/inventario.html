@@ -9,7 +9,7 @@
         <div class="col-md-6 offset-md-3">
             
             <h1 class="text-center display-3 py-5">INVENTARIO MANCHESTER</h1>
-
+          
             <table class="table table-hover">
                 <thead>
                   <tr>
@@ -22,21 +22,16 @@
                 </thead>
 
                 <tbody>
-
-                    {% for rollos in rolloss %}
-                    
-                        <tr>
-                            <a class="list-group-item" href="{% url 'rollo_detail' rollos.id %}"></a>
-                                <td>{{rollos.almacen}}</td>
-                                <th scope="row">{{rollos.diseno}}</th>
-                                <th scope="row">{{rollos.color}}</th>
-                                <td scope="row">{{rollos.metros}}</td>
-                                <td>{{rollos.user.username}}</td>
-                            </a>
-                        </tr>
-                    
-
-
+                  {% for rollos in rolloss %}
+                  <a class="list-group-item" href="{% url 'rollo_detail' rollos.id %}">
+                    <tr data-href="{% url 'rollo_detail' rollos.id %}" style="cursor: pointer;">
+                      <td>{{rollos.almacen}}</td>
+                      <td>{{rollos.diseno}}</td>
+                      <td>{{rollos.color}}</td>
+                      <th>{{rollos.metros}}</td>
+                      <td>{{rollos.user.username}}</td>
+                    </tr>
+                  </a>
                   {% endfor %}
                 </tbody>
               </table>
@@ -44,5 +39,20 @@
         </div>
     </div>
 </main>
+
+<script>
+  
+  document.addEventListener("DOMContentLoaded", () => {
+        const rows = document.querySelectorAll("tr[data-href]");
+    
+        rows.forEach(row => {
+            row.addEventListener("click", () => {
+                window.location.href = row.dataset.href;
+            });
+        });
+    });
+
+    </script>
+
 
 {% endblock %}
