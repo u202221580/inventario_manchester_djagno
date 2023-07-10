@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=E:\Repositorios\manchester\venv
+set VIRTUAL_ENV=D:\Python_projects\inventario_manchester_djagno\venv
 
 if not defined PROMPT set PROMPT=$P$G
 

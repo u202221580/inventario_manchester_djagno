@@ -20,17 +20,28 @@
                 <button class="btn btn-primary">Actualizar</button>
             </form>
 
-            <div class="mt-5 d-flex">
 
-                <form action="#" method="POST" class="card card-body">
-                    {% csrf_token %}
-                    <button class="btn btn-danger">Eliminar</button>
-                </form>
-            </div>
 
         </div>
     </div>
 
 </main>
+
+<main class="container">
+    <div class="row">
+        
+            <div class="col-md-4 offset-md-4 py-5">
+
+                <form  method="POST" class="card card-body">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Ingrese codigo de rollo" class="form-control py-1">
+                    <button class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+
+    </div>
+
+</main>
+
 
 {% endblock %}
