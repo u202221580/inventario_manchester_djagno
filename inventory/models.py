@@ -7,7 +7,7 @@ class Almacen(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name
-
+    
 class Diseno(models.Model):
     name = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)

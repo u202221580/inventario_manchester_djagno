@@ -24,12 +24,12 @@ urlpatterns = [
     path('signup/', views.signup, name='signup'),
     path('logout/', views.singout, name='logout'),
     path('signin/', views.signin, name='signin'),
-    #path('inventario/', views.inventario, name='inventario'),
+    path('inventario/', views.inventario, name='inventario'),
     path('inventario/<int:rollo_id>/', views.rollo_detail, name='rollo_detail'),
     path('CRUD/', views.CRUD, name='CRUD'),
-    path('create/', views.create_rollo, name='create_rollo'),
-    path('inventario/', views.dropdownsearch, name="dropdownsearch"),
-
+    path('CRUD/', views.create_rollo, name='create_rollo'),
+    #path('inventario/', views.dropdownsearch, name="dropdownsearch"),
+    #path('inventario/', views.listarcampos, name="listarcampos"),
     
 
 ]

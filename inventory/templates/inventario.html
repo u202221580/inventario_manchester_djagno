@@ -9,78 +9,80 @@
             
             <h1 class="text-center display-3 py-5">INVENTARIO MANCHESTER</h1>
             <form method="POST">
-            <div class="col-md-6 offset-md-3">
-              
-              {% csrf_token %}
+              <div class="col-md-6 offset-md-3">
+                
+                {% csrf_token %}
+                <select name="almacen">
+                    <option value="0">Seleccione almacen</option>
+                    {% for alma in data_almacen %}              
+                    <option value="{{alma.id}}">
+                      {{alma.name}}
+                    </option>
+                  {% endfor %} 
+                </select>
 
-              <select name="almacen" class="select-form">
-                {% for a in listar_almacen %}
-                <option value="almacen">
-                  {{a.name}}
-                </option>
-                {% endfor %} 
-              </select>
 
-              <select name="diseno">
-                {% for d in listar_diseno %}
-                <option value="diseno">
-                  {{d.name}}
-                </option>
-                {% endfor %} 
-              </select>
+                <select name="diseno">
+                  <option value="0">Seleccione diseno</option>
+                  {% for dis in data_diseno %}
+                  <option value="{{dis.id}}">
+                    {{dis.name}}
+                  </option>
+                  {% endfor %} 
+                </select>
 
-              <select name="color">
-                <option value="0">Seleccione color</option>
-                {% for c in listar_color %}
-                <option value="{{c.id}}">
-                  {{c.name}}
-                </option>
-                {% endfor %} 
-              </select>
+                <select name="color">
+                  <option value="0">Seleccione color</option>
+                  {% for col in data_color %}
+                  <option value="{{col.id}}">
+                    {{col.name}}
+                  </option>
+                  {% endfor %} 
+                </select>
 
-              <input type="submit" value="Search">
+                <input type="submit" value="Search">
 
-            </div>
+              </div>
 
-            <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Almacen</th>
-                    <th scope="col">Diseno</th>
-                    <th scope="col">Color</th>
-                    <th scope="col">Metraje</th>
-                    <th scope="col">Usuario</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <!--{% for rollos in rolloss %}
-                  <a class="list-group-item">
+              <table class="table table-hover">
+                  <thead>
                     <tr>
-                      <td>{{rollos.almacen}}</td>
-                      <td>{{rollos.diseno}}</td>
-                      <td>{{rollos.color}}</td>
-                      <th>{{rollos.metros}}</td>
-                      <td>{{rollos.user.username}}</td>
+                      <th scope="col">Almacen</th>
+                      <th scope="col">Diseno</th>
+                      <th scope="col">Color</th>
+                      <th scope="col">Metraje</th>
+                      <th scope="col">Usuario</th>
                     </tr>
-                  </a>
-                  
-                  {% endfor %}
-                  -->
-                  {% for result in data %}
-                  
-                  <a class="list-group-item">
-                    <tr>
-                      <td>{{result.almacen}}</td>
-                      <td>{{result.diseno}}</td>
-                      <td>{{result.color}}</td>
-                      <th>{{result.metros}}</td>
-                      <td>{{result.user.username}}</td>
-                    </tr>
-                  </a>
-                  {% endfor %}
-                </tbody>
-              </table>
+                  </thead>
+
+                  <tbody>
+                    <!--{% for rollos in rolloss %}
+                    <a class="list-group-item">
+                      <tr>
+                        <td>{{rollos.almacen}}</td>
+                        <td>{{rollos.diseno}}</td>
+                        <td>{{rollos.color}}</td>
+                        <th>{{rollos.metros}}</td>
+                        <td>{{rollos.user.username}}</td>
+                      </tr>
+                    </a>
+                    
+                    {% endfor %}
+                    -->
+                    {% for result in data %}
+                    
+                    <a class="list-group-item">
+                      <tr>
+                        <td>{{result.almacen}}</td>
+                        <td>{{result.diseno}}</td>
+                        <td>{{result.color}}</td>
+                        <th>{{result.metros}}</td>
+                        <td>{{result.user.username}}</td>
+                      </tr>
+                    </a>
+                    {% endfor %}
+                  </tbody>
+                </table>
             </form>
         </div>
     </div>
