@@ -3,13 +3,45 @@
 
 
 {% block content %}
-
 <main class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             
             <h1 class="text-center display-3 py-5">INVENTARIO MANCHESTER</h1>
-          
+            <form method="POST">
+            <div class="col-md-6 offset-md-3">
+              
+              {% csrf_token %}
+
+              <select name="almacen" class="select-form">
+                {% for a in listar_almacen %}
+                <option value="almacen">
+                  {{a.name}}
+                </option>
+                {% endfor %} 
+              </select>
+
+              <select name="diseno">
+                {% for d in listar_diseno %}
+                <option value="diseno">
+                  {{d.name}}
+                </option>
+                {% endfor %} 
+              </select>
+
+              <select name="color">
+                <option value="0">Seleccione color</option>
+                {% for c in listar_color %}
+                <option value="{{c.id}}">
+                  {{c.name}}
+                </option>
+                {% endfor %} 
+              </select>
+
+              <input type="submit" value="Search">
+
+            </div>
+
             <table class="table table-hover">
                 <thead>
                   <tr>
@@ -22,9 +54,9 @@
                 </thead>
 
                 <tbody>
-                  {% for rollos in rolloss %}
-                  <a class="list-group-item" href="{% url 'rollo_detail' rollos.id %}">
-                    <tr data-href="{% url 'rollo_detail' rollos.id %}" style="cursor: pointer;">
+                  <!--{% for rollos in rolloss %}
+                  <a class="list-group-item">
+                    <tr>
                       <td>{{rollos.almacen}}</td>
                       <td>{{rollos.diseno}}</td>
                       <td>{{rollos.color}}</td>
@@ -32,10 +64,24 @@
                       <td>{{rollos.user.username}}</td>
                     </tr>
                   </a>
+                  
+                  {% endfor %}
+                  -->
+                  {% for result in data %}
+                  
+                  <a class="list-group-item">
+                    <tr>
+                      <td>{{result.almacen}}</td>
+                      <td>{{result.diseno}}</td>
+                      <td>{{result.color}}</td>
+                      <th>{{result.metros}}</td>
+                      <td>{{result.user.username}}</td>
+                    </tr>
+                  </a>
                   {% endfor %}
                 </tbody>
               </table>
-
+            </form>
         </div>
     </div>
 </main>

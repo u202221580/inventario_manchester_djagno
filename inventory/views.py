@@ -62,10 +62,31 @@ def signin(request):
             login(request, user)
             return redirect('inventario')
 
+
+#@login_required
+#def inventario(request):
+#    rolloss = Rollos.objects.all()
+#    return render(request, 'inventario.html', {'rolloss': rolloss})
+
+
 @login_required
-def inventario(request):
-    rolloss = Rollos.objects.all()
-    return render(request, 'inventario.html', {'rolloss': rolloss})
+def dropdownsearch(request):
+
+    if request.method=="POST":
+        listar_almacen = Almacen.objects.all()
+        listar_diseno = Diseno.objects.all()
+        listar_color = Color.objects.all()
+        searchalmacen=request.POST.get('almacen')
+        searchdiseno=request.POST.get('diseno')
+        searchcolor=request.POST.get('color')
+        rollosearch=Rollos.objects.filter(almacen=searchalmacen,diseno=searchdiseno,color=searchcolor)
+          
+        return render(request,'inventario.html',{"data":rollosearch}, {'listar_almacen': listar_almacen},
+                                 {'listar_diseno': listar_diseno}, {'listar_color': listar_color})
+    else:
+                  displayrollos=Rollos.objects.all()
+          
+                  return render(request,'inventario.html',{"data":displayrollos})
 
 
 @login_required
@@ -87,3 +108,26 @@ def rollo_detail(request, rollo_id):
                 'rollos': rollos, 
                 'form': form, 
                 'error': 'Error updating task'})
+        
+
+@login_required
+def CRUD(request):
+    rolloss = Rollos.objects.all()
+    return render(request, 'crud.html', {'rolloss': rolloss})
+
+
+
+
+@login_required       
+def create_rollo(request):
+            try:
+                form = RollosForm(request.POST)
+                newrollo = form.save(commit=True)
+                newrollo.user = request.user
+                newrollo.save()
+                return redirect('CRUD')
+            except ValueError:
+                return render(request, 'crud.html', {
+                'form': RollosForm,
+                'error': 'Please provide valide data'
+            })
