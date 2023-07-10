@@ -8,7 +8,7 @@ from inventory.models import Almacen
 from .models import Diseno
 from .models import Color
 from .models import Rollos
-from .forms import RollosForm
+from .forms import RollosForm, AlmacenForm
 
 
 # Create your views here.
@@ -70,14 +70,20 @@ def signin(request):
         listar_color = Color.objects.all()
 
 def inventario(request):
+
+    context = {}
+    context['form'] = AlmacenForm
+    return render(request, 'inventario.html', context)
+
+    """
     listar_almacen = Almacen.objects.all()
     listar_diseno = Diseno.objects.all()
     listar_color = Color.objects.all()
     rolloss = Rollos.objects.all()
-
+    
     return render(request, 'inventario.html', {'data': rolloss, "data_almacen": listar_almacen, 
                                 "data_diseno": listar_diseno, "data_color": listar_color})
-    
+    """
 
 
 

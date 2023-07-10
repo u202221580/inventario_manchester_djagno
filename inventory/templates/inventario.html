@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-
+{% load widget_tweaks %}
 
 {% block content %}
 <main class="container">
@@ -8,6 +8,17 @@
         <div class="col-md-6 offset-md-3">
             
             <h1 class="text-center display-3 py-5">INVENTARIO MANCHESTER</h1>
+            <input type="text" id="almacen" onkeyup="myFunction()" placeholder="Search for names..">
+
+            
+            <form id="myForm" method="GET" class="form-inline">
+              <div class="form-group">
+                <label for="almacemSelect">Almacen</label>
+                {% render_field form.almacen title="Almacenes" class="form-control" %}
+              </div>
+            </form>
+
+
             <form method="POST">
               <div class="col-md-6 offset-md-3">
                 
@@ -44,7 +55,7 @@
 
               </div>
 
-              <table class="table table-hover">
+              <table class="table table-hover" id="tb_rollos">
                   <thead>
                     <tr>
                       <th scope="col">Almacen</th>
@@ -76,7 +87,7 @@
                         <td>{{result.almacen}}</td>
                         <td>{{result.diseno}}</td>
                         <td>{{result.color}}</td>
-                        <th>{{result.metros}}</td>
+                        <td>{{result.metros}}</td>
                         <td>{{result.user.username}}</td>
                       </tr>
                     </a>
@@ -100,7 +111,8 @@
         });
     });
 
+
     </script>
 
 
-{% endblock %}
+{% endblock content %}
