@@ -5,10 +5,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from inventory.models import Almacen
-from .models import Diseno
-from .models import Color
+from .models import Diseno_Color
 from .models import Rollos
-from .forms import RollosForm, AlmacenForm
+from .forms import RollosForm
 
 
 # Create your views here.
@@ -71,11 +70,15 @@ def signin(request):
 
 def inventario(request):
 
+    rolloss = Rollos.objects.all()
+    
+    return render(request, 'inventario.html', {'data': rolloss})
+    """
     context = {}
     context['form'] = AlmacenForm
     return render(request, 'inventario.html', context)
 
-    """
+    
     listar_almacen = Almacen.objects.all()
     listar_diseno = Diseno.objects.all()
     listar_color = Color.objects.all()

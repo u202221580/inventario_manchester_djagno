@@ -8,9 +8,21 @@
         <div class="col-md-6 offset-md-3">
             
             <h1 class="text-center display-3 py-5">INVENTARIO MANCHESTER</h1>
-            <input type="text" id="almacen" onkeyup="myFunction()" placeholder="Search for names..">
 
+            <div class="d-block">
+            <label class="text text-center p-1">Buscar por Diseño y color: </label>
+            <input class="form-control" type="text" id="buscar" onkeyup="busqueda()" placeholder="Ingrese el rollo a buscar">
+
+            <button type="button" onclick="cuantasFilas()">
+              Calcular rollos totales
+                
+            </button>
+            <caption id="contador">Rollos totales: </caption> 
             
+            
+            
+          </div>
+            <!--
             <form id="myForm" method="GET" class="form-inline">
               <div class="form-group">
                 <label for="almacemSelect">Almacen</label>
@@ -54,19 +66,20 @@
                 <input type="submit" value="Search">
 
               </div>
+              -->
 
               <table class="table table-hover" id="tb_rollos">
                   <thead>
                     <tr>
+                      <th scope="col">Código</th>
                       <th scope="col">Almacen</th>
-                      <th scope="col">Diseno</th>
-                      <th scope="col">Color</th>
+                      <th scope="col">Diseno y color</th>
                       <th scope="col">Metraje</th>
                       <th scope="col">Usuario</th>
                     </tr>
                   </thead>
 
-                  <tbody>
+                  <tbody id="tb_registros">
                     <!--{% for rollos in rolloss %}
                     <a class="list-group-item">
                       <tr>
@@ -79,18 +92,21 @@
                     </a>
                     
                     {% endfor %}
+
+                     <a class="list-group-item"></a>
+                    </a>
                     -->
                     {% for result in data %}
                     
-                    <a class="list-group-item">
+                    
                       <tr>
+                        <td>{{result.codigo}}</td>
                         <td>{{result.almacen}}</td>
-                        <td>{{result.diseno}}</td>
-                        <td>{{result.color}}</td>
+                        <td>{{result.diseno_color}}</td>                    
                         <td>{{result.metros}}</td>
                         <td>{{result.user.username}}</td>
                       </tr>
-                    </a>
+                     
                     {% endfor %}
                   </tbody>
                 </table>
@@ -111,7 +127,28 @@
         });
     });
 
-
+  function busqueda() {
+    var input, filter, table, tr, td, i;
+    input = document.getElementById("buscar");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("tb_rollos");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  function cuantasFilas() {
+    const tableBody = document.getElementById("tb_registros");
+    const caption = document.getElementById("contador");
+    caption.textContent = "Rollos totales: "+ tableBody.rows.length;
+            }
     </script>
 
 

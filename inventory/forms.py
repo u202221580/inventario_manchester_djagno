@@ -1,7 +1,6 @@
 from django import forms
 from .models import Almacen
-from .models import Diseno
-from .models import Color
+from .models import Diseno_Color
 from .models import Rollos
 
 class AlmacenForm(forms.Form):
@@ -12,29 +11,22 @@ class AlmacenForm(forms.Form):
     class Meta:
         fields = ['state',]
 
-class DisenoForm(forms.ModelForm):
+class Diseno_ColorForm(forms.ModelForm):
     class Meta:
-        model = Diseno
+        model = Diseno_Color
         fields = ['name']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del diseño'})
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del diseño y color'})
         }
 
-class ColorForm(forms.ModelForm):
-    class Meta:
-        model = Color
-        fields = ['name']
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre del color'})
-        }
 
 class RollosForm(forms.ModelForm):
     class Meta:
         model = Rollos
-        fields = ['almacen', 'diseno', 'color','metros']
+        fields = ['codigo','almacen', 'diseno_color','metros']
         widgets = {
+            'codigo': forms.TextInput(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Ingrese codigo'}),
             'almacen': forms.Select(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione almacen'}),
-            'diseno': forms.Select(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione diseño'}),
-            'color': forms.Select(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione color'}),
+            'diseno_color': forms.Select(attrs={'class': 'form-select form-select-lg mb-3', 'placeholder': 'Seleccione diseño y color'}),            
             'metros': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese metraje'})
         }
