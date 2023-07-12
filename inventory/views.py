@@ -8,6 +8,7 @@ from inventory.models import Almacen
 from .models import Diseno_Color
 from .models import Rollos
 from .forms import RollosForm
+from django.http.response import JsonResponse
 
 
 # Create your views here.
@@ -62,18 +63,24 @@ def signin(request):
             return redirect('inventario')
 
 
-#@login_required
-#def inventario(request):
-        listar_almacen = Almacen.objects.all()
-        listar_diseno = Diseno.objects.all()
-        listar_color = Color.objects.all()
 
+
+def pagina(request):
+    return render(request, 'inventario.html')
+
+@login_required
+def inventario(_request):
+        rollos = list(Rollos.objects.values())
+        data = {'rollos': rollos}
+        return JsonResponse(data)
+
+"""
 def inventario(request):
 
     rolloss = Rollos.objects.all()
     
     return render(request, 'inventario.html', {'data': rolloss})
-    """
+
     context = {}
     context['form'] = AlmacenForm
     return render(request, 'inventario.html', context)

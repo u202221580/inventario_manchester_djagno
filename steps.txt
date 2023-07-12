@@ -35,3 +35,62 @@ python manage.py makemigrations
 python manage.py migrate
 
 python manage.py createsuperuser
+
+
+inventario.html
+
+8 line
+            
+            <div class="d-block py-2">
+              <label class="text text-center">Buscar por Diseño y color: </label>
+              <input class="form-control" type="text" id="buscar" onkeyup="busqueda()" placeholder="Ingrese el rollo a buscar">
+
+
+              <p id="contador"></p> 
+            
+            </div>
+            <!--
+            <form id="myForm" method="GET" class="form-inline">
+              <div class="form-group">
+                <label for="almacemSelect">Almacen</label>
+                {% render_field form.almacen title="Almacenes" class="form-control" %}
+              </div>
+            </form>
+
+            
+            <form method="POST">
+              <div class="col-md-6 offset-md-3">
+                
+                {% csrf_token %}
+                <select name="almacen">
+                    <option value="0">Seleccione almacen</option>
+                    {% for alma in data_almacen %}              
+                    <option value="{{alma.id}}">
+                      {{alma.name}}
+                    </option>
+                  {% endfor %} 
+                </select>
+
+
+                <select name="diseno">
+                  <option value="0">Seleccione diseno</option>
+                  {% for dis in data_diseno %}
+                  <option value="{{dis.id}}">
+                    {{dis.name}}
+                  </option>
+                  {% endfor %} 
+                </select>
+
+                <select name="color">
+                  <option value="0">Seleccione color</option>
+                  {% for col in data_color %}
+                  <option value="{{col.id}}">
+                    {{col.name}}
+                  </option>
+                  {% endfor %} 
+                </select>
+
+                <input type="submit" value="Search">
+
+              </div>
+              -->

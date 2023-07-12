@@ -1,85 +1,26 @@
 {% extends 'base.html' %}
 
-{% load widget_tweaks %}
-
 {% block content %}
 <main class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             
-            <h1 class="text-center display-3 py-5">INVENTARIO MANCHESTER</h1>
-
-            <div class="d-block">
-            <label class="text text-center p-1">Buscar por Diseño y color: </label>
-            <input class="form-control" type="text" id="buscar" onkeyup="busqueda()" placeholder="Ingrese el rollo a buscar">
-
-            <button type="button" onclick="cuantasFilas()">
-              Calcular rollos totales
-                
-            </button>
-            <caption id="contador">Rollos totales: </caption> 
-            
-            
-            
-          </div>
-            <!--
-            <form id="myForm" method="GET" class="form-inline">
-              <div class="form-group">
-                <label for="almacemSelect">Almacen</label>
-                {% render_field form.almacen title="Almacenes" class="form-control" %}
-              </div>
-            </form>
+          <h1 class="text-center display-3 py-1">INVENTARIO MANCHESTER</h1>
 
 
-            <form method="POST">
-              <div class="col-md-6 offset-md-3">
-                
-                {% csrf_token %}
-                <select name="almacen">
-                    <option value="0">Seleccione almacen</option>
-                    {% for alma in data_almacen %}              
-                    <option value="{{alma.id}}">
-                      {{alma.name}}
-                    </option>
-                  {% endfor %} 
-                </select>
-
-
-                <select name="diseno">
-                  <option value="0">Seleccione diseno</option>
-                  {% for dis in data_diseno %}
-                  <option value="{{dis.id}}">
-                    {{dis.name}}
-                  </option>
-                  {% endfor %} 
-                </select>
-
-                <select name="color">
-                  <option value="0">Seleccione color</option>
-                  {% for col in data_color %}
-                  <option value="{{col.id}}">
-                    {{col.name}}
-                  </option>
-                  {% endfor %} 
-                </select>
-
-                <input type="submit" value="Search">
-
-              </div>
-              -->
 
               <table class="table table-hover" id="tb_rollos">
                   <thead>
                     <tr>
-                      <th scope="col">Código</th>
+                      <!--<th scope="col">Código</th>-->
+                      <th scope="col">#</th>
+                      <th scope="col">Codigo</th>
                       <th scope="col">Almacen</th>
-                      <th scope="col">Diseno y color</th>
-                      <th scope="col">Metraje</th>
-                      <th scope="col">Usuario</th>
+                      <th scope="col">Metros</th>
                     </tr>
                   </thead>
 
-                  <tbody id="tb_registros">
+                  <tbody id="tbody_rollos">
                     <!--{% for rollos in rolloss %}
                     <a class="list-group-item">
                       <tr>
@@ -96,6 +37,8 @@
                      <a class="list-group-item"></a>
                     </a>
                     -->
+
+                    <!--
                     {% for result in data %}
                     
                     
@@ -104,10 +47,11 @@
                         <td>{{result.almacen}}</td>
                         <td>{{result.diseno_color}}</td>                    
                         <td>{{result.metros}}</td>
-                        <td>{{result.user.username}}</td>
                       </tr>
                      
                     {% endfor %}
+
+                    -->
                   </tbody>
                 </table>
             </form>
@@ -115,18 +59,10 @@
     </div>
 </main>
 
-<script>
-  
-  document.addEventListener("DOMContentLoaded", () => {
-        const rows = document.querySelectorAll("tr[data-href]");
-    
-        rows.forEach(row => {
-            row.addEventListener("click", () => {
-                window.location.href = row.dataset.href;
-            });
-        });
-    });
 
+<script>
+
+    /*
   function busqueda() {
     var input, filter, table, tr, td, i;
     input = document.getElementById("buscar");
@@ -134,7 +70,7 @@
     table = document.getElementById("tb_rollos");
     tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[2];
+      td = tr[i].getElementsByTagName("td")[1];
       if (td) {
         if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
           tr[i].style.display = "";
@@ -144,12 +80,26 @@
       }
     }
   }
+
   function cuantasFilas() {
+
+    let tabla = document.getElementById("tb_rollos");
+    let filas = document.getElementsByTagName("tbody")[0];
+
+    document.getElementById("contador").innerHTML = "Rollos totales: " + filas.children.length;
+      
+    } 
+    
+
+    
     const tableBody = document.getElementById("tb_registros");
     const caption = document.getElementById("contador");
     caption.textContent = "Rollos totales: "+ tableBody.rows.length;
-            }
-    </script>
+    */
+  </script>
+
+  
+
 
 
 {% endblock content %}
